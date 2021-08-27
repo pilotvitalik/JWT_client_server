@@ -1,29 +1,21 @@
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const router = require('./router');
+const router = require('./router/index');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 7000;
 const app = express();
 
-app.use(express.json);
-app.use(cookieParser);
-//app.use('/api', router);
-//
-// const start = async () => {
-//     try {
-//         app.listen(PORT, () => console.log(`Server started on port = ${PORT}`))
-//     } catch {
-//         console.log(err)
-//     }
-// }
-//
-// start();
+app.use(express.json());
+app.use(cookieParser());
+app.use('/api', router);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+const start = async () => {
+    try {
+        app.listen(PORT, () => console.log(`Server started on port = ${PORT}`))
+    } catch {
+        console.log(err)
+    }
+}
 
-app.listen(3000, () => {
-    console.log(`Example app listening at http://localhost:${3000}`)
-})
+start();
