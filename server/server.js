@@ -3,19 +3,27 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const router = require('./router');
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json);
 app.use(cookieParser);
-app.use('/api', router);
+//app.use('/api', router);
+//
+// const start = async () => {
+//     try {
+//         app.listen(PORT, () => console.log(`Server started on port = ${PORT}`))
+//     } catch {
+//         console.log(err)
+//     }
+// }
+//
+// start();
 
-const start = async () => {
-    try {
-        app.listen(PORT, () => console.log(`Server started on port = ${PORT}`))
-    } catch {
-        console.log(err)
-    }
-}
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
-start();
+app.listen(3000, () => {
+    console.log(`Example app listening at http://localhost:${3000}`)
+})
