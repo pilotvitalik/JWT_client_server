@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const tokenModel = require('../service/');
+const tokenModel = require('../models/token-model');
 
 class TokenService{
 	generateToken(payload){
@@ -22,4 +22,4 @@ class TokenService{
 	}
 }
 
-module.exports = TokenService();
+module.exports = new TokenService();

@@ -1,8 +1,8 @@
-const UserModel = require('../controllers/');
+const UserModel = require('../models/user-model');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const mailService = require('./mail-service');
-const tokenService = requie('./token-service');
+const tokenService = require('./token-service');
 const UserDto = require('../dtos/dtos');
 
 class UserService{
@@ -25,4 +25,4 @@ class UserService{
 	}
 }
 
-module.exports = UserService();
+module.exports = new UserService();
