@@ -7,7 +7,9 @@ const UserDto = require('../dtos/dtos');
 
 class UserService{
 	async registartion(email, password){
-		const candidate = await UserModel.findOne({email});
+		email = 'test@mail.ru';
+		const candidate = await new UserModel(email).find();
+		console.log(candidate)
 		if (candidate){
 			throw new Error(`Пользователь с почтовым адресом ${email} уже существует`)
 		}
