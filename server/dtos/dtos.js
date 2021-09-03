@@ -6,8 +6,8 @@ module.exports = class UserDto{
 
 	// конструктор для извлечения необходимых полей
 	constructor(model){
-		this.email = modal.email;
-		this.id = modal.id;
+		this.email = model.email;
+		this.id = model.id;
 		this.isActivated = model.isActivated;
 	}
 }

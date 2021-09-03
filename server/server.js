@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const router = require('./router/index');
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 7000;
 const app = express();
@@ -12,8 +13,10 @@ app.use('/api', router);
 
 const start = async () => {
     try {
+        await mongoose.connect(process.env.HOST_DB);
+        console.log(17)
         app.listen(PORT, () => console.log(`Server started on port = ${PORT}`))
-    } catch {
+    } catch (err) {
         console.log(err)
     }
 }
