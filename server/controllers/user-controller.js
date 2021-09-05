@@ -1,4 +1,5 @@
 const userService = require('../service/user-service');
+const ApiError = require('../exception/api-error');
 
 class UserController {
     async registration(req, res, next){
@@ -9,7 +10,7 @@ class UserController {
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
             return res.json(userData);
         } catch (err){
-            console.log(err);
+            next(err);
         }
     }
 
@@ -17,7 +18,7 @@ class UserController {
         try{
 
         } catch (err){
-
+            next(err);
         }
     }
 
@@ -25,7 +26,7 @@ class UserController {
         try{
 
         } catch (err){
-
+            next(err);
         }
     }
 
@@ -33,7 +34,6 @@ class UserController {
         try {
             const activationLink = req.params.link;
             await userService.activate(activationLink);
-            // при успешной активации перенаправляем клиента на страницу сайта с подтверждением активации
             return res.redirect(process.env.CLIENT_URL);
         } catch (err) {
             next(err);
@@ -44,7 +44,7 @@ class UserController {
         try{
 
         } catch (err){
-
+            next(err);
         }
     }
 
@@ -52,7 +52,7 @@ class UserController {
         try{
             res.json([123, 125]);
         } catch (err){
-
+            next(err);
         }
     }
 }
