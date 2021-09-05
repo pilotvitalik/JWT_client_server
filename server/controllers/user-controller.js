@@ -30,10 +30,13 @@ class UserController {
     }
 
     async activate(req, res, next){
-        try{
-
-        } catch (err){
-
+        try {
+            const activationLink = req.params.link;
+            await userService.activate(activationLink);
+            // при успешной активации перенаправляем клиента на страницу сайта с подтверждением активации
+            return res.redirect(process.env.CLIENT_URL);
+        } catch (err) {
+            next(err);
         }
     }
 
